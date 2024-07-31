@@ -98,7 +98,7 @@ def dico_resultats(texte, nlp=""):
             os.system(cmd)
             nlp = spacy.load("fr_core_news_sm")
     chunks: list[str] = chunk_text(text=texte)
-    print(len(chunks))
+    # print(len(chunks))
     # exit()
     dico_resultats = {}
     i = 0
@@ -125,17 +125,17 @@ def bio_spacy(texte, nlp="") -> list[list]:
             nlp = spacy.load("fr_core_news_sm")
     chunks: list[str] = chunk_text(text=texte)
     # print(chunks)
-    print(len(chunks))
+    # print(len(chunks))
     # exit()
     liste_bio: list = []
     for chunk in chunks:
         doc = nlp(chunk)
-        print(f"doc: {doc}")
-        for i, ent in enumerate(doc.ents):
-            print(i, ent)
+        # print(f"doc: {doc}")
+        # for i, ent in enumerate(doc.ents):
+            # print(i, ent)
         liste_bio.append([[doc[i].text, doc[i].ent_iob_, doc[i].ent_type_]
                           for i, ent in enumerate(doc)])
-        print(liste_bio)
+        # print(liste_bio)
         # exit()
     return liste_bio
 
@@ -143,11 +143,10 @@ def bio_spacy(texte, nlp="") -> list[list]:
 if __name__ == "__main__":
     do_json: bool = True
     # for modele in ["sm"]:
-    # for modele in ["sm", "md", "lg"]:
-    for modele in ["sm","md"]:
+    for modele in ["lg","sm","md"]:
         # liste_subcorpus = glob.glob(f"{path_corpora}/*")
         liste_subcorpus = list(Path(path_corpora).glob("*"))
-        print(liste_subcorpus)
+        # print(liste_subcorpus)
         print(os.getcwd())
         if len(liste_subcorpus) == 0:
             print(

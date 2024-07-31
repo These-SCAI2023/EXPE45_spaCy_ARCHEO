@@ -134,6 +134,7 @@ if __name__ == "__main__":
             exit()
         print("Starting with modèle %s" % modele)
         nom_complet_modele = "fr_core_news_%s" % modele
+        # nom_complet_modele = "pt_core_news_%s" % modele
         # nom_complet_modele = "en_core_web_%s" % modele
         try:
             nlp = spacy.load(nom_complet_modele)
@@ -146,7 +147,7 @@ if __name__ == "__main__":
         for subcorpus in liste_subcorpus:
             print(f"  Processing {subcorpus}")
             liste_txt = glob.glob(f"{subcorpus}/*_REF/*.txt")
-            liste_txt += glob.glob(f"{subcorpus}/*_OCR/*/*.txt")
+            liste_txt += glob.glob(f"{subcorpus}/*OCR/*/*.txt")
             print("  nombre de fichiers txt trouvés :", len(liste_txt))
             for path in liste_txt:
                 dossiers = re.split("/", path)[:-1]
